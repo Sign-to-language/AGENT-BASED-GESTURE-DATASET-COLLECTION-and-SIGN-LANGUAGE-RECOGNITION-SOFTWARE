@@ -9,7 +9,7 @@ label=tk.Label(form,text="Sign to Football", fg="#88AB8E",bg="beige", font="Time
 
 def search():
     pass
-print("as")
+
 
 
 button = tk.Button(form,text="Home",fg="#EEE7DA",bg="#88AB8E",font="Times 10 italic bold",command=search)
