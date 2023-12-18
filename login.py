@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 form = tk.Tk()
 form.title("Log in - Sign up")
@@ -35,8 +36,13 @@ def kayıtol():
     isim_entry.place(relx=0.24 , rely=0.7)
 
 def girişyap():
-    mail_entry.delete(0, 'end')
-    sifre_entry.delete(0,'end')
+    if len(mail_entry.get()) == 0 and len(sifre_entry.get()) == 0:
+      messagebox.showinfo(title="Warning", message="You must fill in your info to log in successfully")
+
+    else:
+     mail_entry.delete(0, 'end')
+     sifre_entry.delete(0,'end')
+
 
 def sifregizle():
     if sifre_entry.cget("show") == "":
