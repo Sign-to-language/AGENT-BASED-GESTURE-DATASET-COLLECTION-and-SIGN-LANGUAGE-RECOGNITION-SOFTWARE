@@ -135,6 +135,7 @@ button.place(relx=0.60, rely=0.06, anchor=tkinter.CENTER)
 button = customtkinter.CTkButton(master=app3,text="Sign Up",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25))
 button.place(relx=0.75, rely=0.06, anchor=tkinter.CENTER)
+button.place(relx=0.75, rely=0.06, anchor=tkinter.CENTER)
 button = customtkinter.CTkButton(master=app3,text="Sign Up",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25))
 button.place(relx=0.75, rely=0.06, anchor=tkinter.CENTER)
