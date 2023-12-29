@@ -1,25 +1,27 @@
 import tkinter 
 from PIL import Image
 import customtkinter
-
+from tkinter import ttk
+import random
+import os
 
 def switch_window(window_to_hide, window_to_show):
     window_to_hide.withdraw()
     window_to_show.deiconify()
 
+
 # First Window
 app1 = tkinter.Tk()
 width= app1.winfo_screenwidth() 
 height= app1.winfo_screenheight()
-app1.geometry("%dx%d" % (width, height))
-app1.state('zoomed')
+app1.geometry("%d400x%d240" % (width, height))
 app1.title("Sign To Language")
 app1.configure(bg="#EEF0E5")
 
 
 label = customtkinter.CTkLabel(master=app1,text="Sign to Language", width=210, height=150, text_color="#163020" , font=("Castellar", 35))
 label.place(relx=0.14,rely=0.06, anchor=tkinter.CENTER)
- 
+
 
 button = customtkinter.CTkButton(master=app1,text="Home",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25))
@@ -63,60 +65,141 @@ my_label.place(relx=0.75, rely=0.6, anchor=tkinter.CENTER)
 
 
 # Second Window
+def clickSearch():
+    text = entry2.get()
+    for widget in content_frame.winfo_children():
+        if isinstance(widget, customtkinter.CTkLabel) and widget != content_frame.winfo_children()[0]:
+            widget.destroy()
+
+    if len(text) == 1:
+        text = text.lower()
+        y = 0.15
+        x = 0.1
+        counter = 0
+
+        files = [os.path.join(f"Data\\{text}", f) for f in os.listdir(f"Data\\{text}") if os.path.isfile(os.path.join(f"Data\\{text}", f))]
+
+        for file in files:
+            label = customtkinter.CTkLabel(master=content_frame, text=text.upper(), width=210, height=150, text_color="#EEF0E5",
+                               font=("Castellar", 35))
+            label.place(relx=x, rely=y-0.05)
+            my_image = customtkinter.CTkImage(light_image=Image.open(file), size=(200, 180))
+            my_label = customtkinter.CTkLabel(content_frame, text="", image=my_image)
+            my_label.place(relx=x, rely=y)
+            counter += 1
+
+            if counter == 4:
+                y += 0.12
+                x = 0.1
+                counter = 0
+            else:
+                x += 0.2
+
+        content_frame.update_idletasks()
+        canvas.configure(scrollregion=canvas.bbox("all"))
+    else:
+        y = 0.15
+        x = 0.1
+        counter = 0
+        text = text.lower()
+        textLength = len(text)
+        for k in range(textLength):
+            letter = text[k]
+            if letter == " ":
+                x = 0.1
+                y += 0.12
+                counter = 0
+                continue
+            files = [os.path.join(f"Data\\{letter}", f) for f in os.listdir(f"Data\\{letter}") if os.path.isfile(os.path.join(f"Data\\{letter}", f))]
+            random1 = random.randint(0, len(files)-1)
+
+            label = customtkinter.CTkLabel(master=content_frame, text=letter.upper(), width=210, height=150, text_color="#EEF0E5",
+                               font=("Castellar", 35))
+            label.place(relx=x, rely=y-0.05)
+
+            my_image = customtkinter.CTkImage(light_image=Image.open(files[random1]), size=(200, 180))
+            my_label = customtkinter.CTkLabel(content_frame, text="", image=my_image)
+            my_label.place(relx=x, rely=y)
+            counter += 1
+
+            if counter == 4:
+                y += 0.12
+                x = 0.1
+                counter = 0
+            else:
+                x += 0.2
+        content_frame.update_idletasks()
+        canvas.configure(scrollregion=canvas.bbox("all"))                
+
+
 app2 = tkinter.Toplevel()
-width= app2.winfo_screenwidth() 
-height= app2.winfo_screenheight()
-app2.geometry("%dx%d" % (width, height))
-app2.state('zoomed')
+width = app2.winfo_screenwidth()
+height = app2.winfo_screenheight()
+app2.geometry("%d400x%d240" % (width, height))
 app2.title("Search")
 app2.configure(bg="#EEF0E5")
-app2.withdraw()  
+app2.withdraw()
 
-label = customtkinter.CTkLabel(master=app2,text="Sign to Language", width=210, height=150, text_color="#163020" , font=("Castellar", 35))
-label.place(relx=0.14,rely=0.06, anchor=tkinter.CENTER)
+label = customtkinter.CTkLabel(master=app2, text="Sign to Language", width=210, height=150, text_color="#163020",
+                               font=("Castellar", 35))
+label.place(relx=0.14, rely=0.06, anchor=tkinter.CENTER)
 
-
-button = customtkinter.CTkButton(master=app2,text="Home",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
-                hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25) , command=lambda: switch_window(app2, app1))
+button = customtkinter.CTkButton(master=app2, text="Home", width=120, height=32, border_width=0, corner_radius=8,
+                                 fg_color="#EEF0E5",
+                                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25),
+                                 command=lambda: switch_window(app2, app1))
 button.place(relx=0.45, rely=0.06, anchor=tkinter.CENTER)
 
-button = customtkinter.CTkButton(master=app2,text="Search",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
-                hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25))
+button = customtkinter.CTkButton(master=app2, text="Search", width=120, height=32, border_width=0, corner_radius=8,
+                                 fg_color="#EEF0E5",
+                                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25))
 button.place(relx=0.60, rely=0.06, anchor=tkinter.CENTER)
 
-button = customtkinter.CTkButton(master=app2,text="Sign Up",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
-                hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25), command=lambda: switch_window(app2, app3))
+button = customtkinter.CTkButton(master=app2, text="Sign Up", width=120, height=32, border_width=0, corner_radius=8,
+                                 fg_color="#EEF0E5",
+                                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25),
+                                 command=lambda: switch_window(app2, app3))
 button.place(relx=0.75, rely=0.06, anchor=tkinter.CENTER)
 
-button = customtkinter.CTkButton(master=app2,text="Log In",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
-                hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25) , command=lambda: switch_window(app2, app4))
+button = customtkinter.CTkButton(master=app2, text="Log In", width=120, height=32, border_width=0, corner_radius=8,
+                                 fg_color="#EEF0E5",
+                                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25),
+                                 command=lambda: switch_window(app2, app4))
 button.place(relx=0.90, rely=0.06, anchor=tkinter.CENTER)
 
-frame = customtkinter.CTkFrame(master=app2,width=1580,height=700,corner_radius=100, fg_color="#88AB8E")
-frame.place(relx=0.55, rely=0.6, anchor=tkinter.CENTER)
 
-label = customtkinter.CTkLabel(master=app2,text="SEARCH A LETTER ", width=210, height=150, text_color="#EEF0E5" , font=("Poor Richard", 35), bg_color="#88AB8E")
-label.place(relx=0.52,rely=0.3, anchor=tkinter.CENTER)
+canvas = tkinter.Canvas(app2)
+canvas.place(relx=0.55, rely=0.6, anchor=tkinter.CENTER, width=1580, height=700)
 
-entry = customtkinter.CTkEntry(master=app2,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Search in Sign to Language..." , text_color="black")
-entry.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
+scrollbar = ttk.Scrollbar(app2, orient="vertical", command=canvas.yview)
+scrollbar.place(relx=0.98, rely=0.6, anchor=tkinter.CENTER, relheight=0.6)
 
-text = entry.get()
+canvas.configure(yscrollcommand=scrollbar.set)
+
+content_frame = customtkinter.CTkFrame(canvas, width=1580, height=2000, corner_radius=100, fg_color="#88AB8E")
+canvas.create_window((0, 0), window=content_frame, anchor="nw")
+
+label = customtkinter.CTkLabel(master=content_frame, text="SEARCH A LETTER ", width=210, height=150, text_color="#EEF0E5",
+                               font=("Poor Richard", 35), bg_color="#88AB8E")
+label.place(relx=0.46, rely=0.05, anchor=tkinter.CENTER)
+
+entry2 = customtkinter.CTkEntry(master=content_frame, width=240, height=50, corner_radius=10, bg_color="#88AB8E",
+                                 fg_color="#EEF0E5", placeholder_text="Search in Sign to Language...", text_color="black")
+entry2.place(relx=0.43, rely=0.08, anchor=tkinter.CENTER)
 
 img = Image.open("search1.png")
+btn = customtkinter.CTkButton(master=content_frame, text="", corner_radius=32, bg_color="#88AB8E", fg_color="#EEF0E5",
+                               hover_color="#88AB8E", border_color="#FFCC70", width=50, height=50,
+                               image=customtkinter.CTkImage(dark_image=img, light_image=img), command=clickSearch)
+btn.place(relx=0.54, rely=0.08, anchor="center")
 
-btn = customtkinter.CTkButton(master=app2, text="", corner_radius=32, bg_color="#88AB8E", fg_color="#EEF0E5",
-                hover_color="#88AB8E", border_color="#FFCC70", width=50, height=50, image=customtkinter.CTkImage(dark_image=img, light_image=img))
 
-
-btn.place(relx=0.62, rely=0.4, anchor="center")
 
 # Third Window
 app3 = tkinter.Toplevel()
 width= app3.winfo_screenwidth() 
 height= app3.winfo_screenheight()
-app3.geometry("%dx%d" % (width, height))
-app3.state('zoomed')
+app3.geometry("%d400x%d240" % (width, height))
 app3.title("Search")
 app3.configure(bg="#EEF0E5")
 app3.withdraw()  
@@ -135,6 +218,7 @@ button.place(relx=0.60, rely=0.06, anchor=tkinter.CENTER)
 button = customtkinter.CTkButton(master=app3,text="Sign Up",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25))
 button.place(relx=0.75, rely=0.06, anchor=tkinter.CENTER)
+
 button = customtkinter.CTkButton(master=app3,text="Log In",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25) , command=lambda: switch_window(app3, app4))
 button.place(relx=0.90, rely=0.06, anchor=tkinter.CENTER)
@@ -183,8 +267,7 @@ button.place(relx=0.5, rely=0.8, anchor=tkinter.CENTER)
 app4 = tkinter.Toplevel()
 width= app4.winfo_screenwidth() 
 height= app4.winfo_screenheight()
-app4.geometry("%dx%d" % (width, height))
-app4.state('zoomed')
+app4.geometry("%d400x%d240" % (width, height))
 app4.title("Search")
 app4.configure(bg="#EEF0E5")
 app4.withdraw()  
@@ -236,8 +319,7 @@ button.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
 app5 = tkinter.Toplevel()
 width= app5.winfo_screenwidth() 
 height= app5.winfo_screenheight()
-app5.geometry("%dx%d" % (width, height))
-app5.state('zoomed')
+app5.geometry("%d400x%d240" % (width, height))
 app5.title("Search")
 app5.configure(bg="#EEF0E5")
 app5.withdraw() 
