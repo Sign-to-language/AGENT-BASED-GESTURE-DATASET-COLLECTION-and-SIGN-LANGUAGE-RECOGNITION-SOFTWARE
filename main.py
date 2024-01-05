@@ -4,6 +4,8 @@ import customtkinter
 from tkinter import ttk
 import random
 import os
+import ASLdataagent as data
+import shutil
 
 def switch_window(window_to_hide, window_to_show):
     window_to_hide.withdraw()
@@ -403,8 +405,155 @@ button = customtkinter.CTkButton(master=app6,text="Admin",width=120,height=32,bo
                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25) , command=lambda: switch_window(app6, app7))
 button.place(relx=0.85, rely=0.06, anchor=tkinter.CENTER)
 
-frame = customtkinter.CTkFrame(master=app6,width=1580,height=700,corner_radius=100, fg_color="#88AB8E")
-frame.place(relx=0.55, rely=0.6, anchor=tkinter.CENTER)
+
+
+canvas1 = tkinter.Canvas(app6)
+canvas1.place(relx=0.55, rely=0.6, anchor=tkinter.CENTER, width=1580, height=700)
+
+scrollbar1 = ttk.Scrollbar(app6, orient="vertical", command=canvas1.yview)
+scrollbar1.place(relx=0.98, rely=0.6, anchor=tkinter.CENTER, relheight=0.6)
+
+canvas1.configure(yscrollcommand=scrollbar1.set)
+
+
+content_frame1 = customtkinter.CTkFrame(canvas1, width=1580, height=10000, corner_radius=100, fg_color="#88AB8E")
+canvas1.create_window((0, 0), window=content_frame1, anchor="nw")
+
+content_frame1.update_idletasks()
+canvas1.configure(scrollregion=canvas1.bbox("all"))      
+
+label = customtkinter.CTkLabel(master=content_frame1,text=" ADMIN PANEL", width=210, height=150, text_color="#EEF0E5" , font=("Poor Richard", 35), bg_color="#88AB8E")
+label.place(relx=0.50,rely=0.01, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.signasl.org/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.02, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector1)
+button.place(relx=0.7, rely=0.02, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://alphabet.lingvano.com/glossary", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.025, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector2)
+button.place(relx=0.7, rely=0.025, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.wikihow.com/Fingerspell-the-Alphabet-in-American-Sign-Language", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.03, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector3)
+button.place(relx=0.7, rely=0.03, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.alamy.com/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.035, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector4)
+button.place(relx=0.7, rely=0.035, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.alamy.com/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.035, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector5)
+button.place(relx=0.7, rely=0.035, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.alamy.com/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.04, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector6)
+button.place(relx=0.7, rely=0.04, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.alamy.com/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.045, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector7)
+button.place(relx=0.7, rely=0.045, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.alamy.com/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.05, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector8)
+button.place(relx=0.7, rely=0.05, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.alamy.com/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.055, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector9)
+button.place(relx=0.7, rely=0.055, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.ava.me/asl", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.06, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector10)
+button.place(relx=0.7, rely=0.06, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.signingsavvy.com/sign/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.065, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector11)
+button.place(relx=0.7, rely=0.065, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.signingsavvy.com/wordlist/fingerspelling", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.07, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector12)
+button.place(relx=0.7, rely=0.07, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.spreadthesign.com/en.us/alphabet/21/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.075, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector13)
+button.place(relx=0.7, rely=0.075, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.spreadthesign.com/en.us/alphabet/21/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.08, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector14)
+button.place(relx=0.7, rely=0.08, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="https://www.handspeak.com/word/", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.4,rely=0.085, anchor=tkinter.CENTER)
+button = customtkinter.CTkButton(master=content_frame1,text="PULL DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= data.dataCollector15)
+button.place(relx=0.7, rely=0.085, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=content_frame1,text="DATA", width=10, height=10, text_color="black" , font=("Book Antiqua", 20), bg_color="#88AB8E")
+label.place(relx=0.5,rely=0.095, anchor=tkinter.CENTER)
+
+def refresh():
+    for widget in content_frame1.winfo_children():
+        if isinstance(widget, customtkinter.CTkLabel) and widget._image is not None:
+            widget.destroy()
+    y = 0.1
+    x = 0.02
+    err = False
+    counter = 0
+    for text in "abcdefghijklmnopqrstuvwxyz":
+        try:
+            files = [os.path.join(f"Data\\{text}", f) for f in os.listdir(f"Data\\{text}") if os.path.isfile(os.path.join(f"Data\\{text}", f))]
+        except:
+            err = True
+        finally:
+            if not err:
+                for file in files:
+                    my_image = customtkinter.CTkImage(light_image=Image.open(file), size=(100, 90))
+                    my_label = customtkinter.CTkLabel(content_frame1, text="", image=my_image)
+                    my_label.place(relx=x, rely=y)
+                    counter += 1
+
+                    if counter == 9:
+                        y += 0.01
+                        x = 0.02
+                        counter = 0
+                    else:
+                        x += 0.1
+
+            content_frame1.update_idletasks()
+
+    canvas1.configure(scrollregion=canvas1.bbox("all"))
+
+button = customtkinter.CTkButton(master=content_frame1,text="REFRESH" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= refresh)
+button.place(relx=0.7, rely=0.095, anchor=tkinter.CENTER)
+
+def deleteData():
+    file_path = "Data"
+
+    try:
+        # Dosyayı sil
+        os.remove(file_path)
+        print(f"{file_path} başarıyla silindi.")
+    except PermissionError as pe:
+        print(f"Izin hatası: {pe}")
+        shutil.rmtree(file_path, ignore_errors=True)
+        print(f"{file_path} başarıyla silindi.")
+    except OSError as e:
+        print(f"Hata oluştu: {e}")
+
+button = customtkinter.CTkButton(master=content_frame1,text="DELETE DATA" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command= deleteData)
+button.place(relx=0.8, rely=0.095, anchor=tkinter.CENTER)
 
 # Seventh Window
 app7 = tkinter.Toplevel()
@@ -451,7 +600,7 @@ label.place(relx=0.44,rely=0.35, anchor=tkinter.CENTER)
 entry = customtkinter.CTkEntry(master=app7,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your e-mail address..." ,text_color="black")
 entry.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
 
-text = entry.get()
+
 
 label = customtkinter.CTkLabel(master=app7,text=" Admin Password ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
 label.place(relx=0.44,rely=0.45, anchor=tkinter.CENTER)
@@ -459,8 +608,20 @@ label.place(relx=0.44,rely=0.45, anchor=tkinter.CENTER)
 entry1 = customtkinter.CTkEntry(master=app7,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your password..." ,text_color="black" , show="*")
 entry1.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-button = customtkinter.CTkButton(master=app7,text="LOG IN" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command=lambda: switch_window(app7, app6))
+
+
+def adminCheck():
+    text = entry.get()
+    text1 = entry1.get()
+    print(text, text1)
+    if text == "admin" and text1 == "admin":
+        switch_window(app7, app6)
+
+button = customtkinter.CTkButton(master=app7,text="LOG IN" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command=adminCheck)
 button.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
+
+
+
 
 # Run the main loop
 app1.mainloop()

@@ -23,20 +23,11 @@ def dataCollector1():
     driver = webdriver.Chrome()
 
     for letter in alphabet:
-        url = "https://www.signasl.org/"
+        url = f"https://www.signasl.org/sign/{letter}"
         driver.get(url)
         count = 0
 
         time.sleep(0.5)
-        searchInput = driver.find_elements(By.TAG_NAME, "input")[1]
-
-        time.sleep(0.5)
-        searchInput.send_keys(letter)
-
-        time.sleep(0.5)
-        searchInput.send_keys(Keys.ENTER)
-
-        time.sleep(1)
 
         videos = driver.find_elements(By.TAG_NAME, "source")
         src = ["src1", "src2", "src3"]
@@ -171,21 +162,14 @@ def dataCollector4():
     for letter in alphabet:
         driver = webdriver.Chrome()
         error = False
-        url = "https://www.alamy.com/"
+        url = f"https://www.alamy.com/stock-photo/Dramatic-colour-image-of-male-hand-demonstrating-ASL-American-sign-language-letter-{letter}-with-empty-copy-space-for-editors.html?sortBy=relevant"
         driver.get(url)
-        time.sleep(0.1)
-        searchInput = driver.find_element(By.ID, "qt")
-
-        time.sleep(0.1)
-        searchInput.send_keys(f"Dramatic colour image of male hand demonstrating ASL American sign language letter {letter} with empty copy space for editors")
-
-        time.sleep(0.1)
-        searchInput.send_keys(Keys.ENTER)
 
         time.sleep(0.5)
 
+
         try:
-            data = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[5]/div/div[3]/div[1]/div/div/div[1]/div/img").get_attribute("src")
+            data = driver.find_elements(By.TAG_NAME, "img")[1].get_attribute("src")
         except Exception as e:
             print(f'Hata: {e}')
             error = True
@@ -217,21 +201,13 @@ def dataCollector5():
     for letter in alphabet:
         driver = webdriver.Chrome()
         error = False
-        url = "https://www.alamy.com/"
+        url = f"https://www.alamy.com/stock-photo/Finger-Spelling-the-Alphabet-in-American-Sign-Language-(ASL).-The-Letter-{letter}.html?sortBy=relevant"
         driver.get(url)
-        time.sleep(0.1)
-        searchInput = driver.find_element(By.ID, "qt")
-
-        time.sleep(0.1)
-        searchInput.send_keys(f"Finger Spelling the Alphabet in American Sign Language (ASL). The Letter {letter}")
-
-        time.sleep(0.1)
-        searchInput.send_keys(Keys.ENTER)
-
+        
         time.sleep(0.5)
 
         try:
-            data = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[5]/div/div[3]/div[1]/div/div/div[1]/div/img").get_attribute("src")
+            data = driver.find_elements(By.TAG_NAME, "img")[1].get_attribute("src")
         except Exception as e:
             print(f'Hata: {e}')
             error = True
@@ -263,21 +239,13 @@ def dataCollector6():
     for letter in alphabet:
         driver = webdriver.Chrome()
         error = False
-        url = "https://www.alamy.com/"
+        url = f"https://www.alamy.com/stock-photo/ASL-alphabet-of-signs-for-deaf%2C-letter-{letter}.html?sortBy=relevant"
         driver.get(url)
-        time.sleep(0.1)
-        searchInput = driver.find_element(By.ID, "qt")
-
-        time.sleep(0.1)
-        searchInput.send_keys(f"ASL alphabet of signs for deaf, letter {letter}")
-
-        time.sleep(0.1)
-        searchInput.send_keys(Keys.ENTER)
 
         time.sleep(0.5)
 
         try:
-            data = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[5]/div/div[3]/div[1]/div/div/div[1]/div/img").get_attribute("src")
+            data = driver.find_elements(By.TAG_NAME, "img")[1].get_attribute("src")
         except Exception as e:
             print(f'Hata: {e}')
             error = True
@@ -306,26 +274,19 @@ def dataCollector6():
         driver.quit()
 
 def dataCollector7():
-    alphabet = "bcdefghjklmnopqrstuvwxyz"
+    alphabet = "bdefghjlopqrstvwx"
 
     for letter in alphabet:
         driver = webdriver.Chrome()
         error = False
-        url = "https://www.alamy.com/"
+        url = f"https://www.alamy.com/stock-photo/Boy-signing-the-letter-{letter}-in-American-Sign-Language.html?sortBy=relevant"
         driver.get(url)
-        time.sleep(0.1)
-        searchInput = driver.find_element(By.ID, "qt")
-
-        time.sleep(0.1)
-        searchInput.send_keys(f"Boy signing the letter '{letter}' in American Sign Language")
-
-        time.sleep(0.1)
-        searchInput.send_keys(Keys.ENTER)
+        
 
         time.sleep(0.5)
 
         try:
-            data = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[5]/div/div[3]/div[1]/div/div/div[1]/div/img").get_attribute("src")
+            data = driver.find_elements(By.TAG_NAME, "img")[1].get_attribute("src")
         except Exception as e:
             print(f'Hata: {e}')
             error = True
@@ -357,21 +318,13 @@ def dataCollector8():
     for letter in alphabet:
         driver = webdriver.Chrome()
         error = False
-        url = "https://www.alamy.com/"
+        url = f"https://www.alamy.com/stock-photo/Caucasian-teenage-boy-doing-American-Sign-Language-on-one-hand-showing-the-symbol-for-{letter}.html?sortBy=relevant"
         driver.get(url)
-        time.sleep(0.1)
-        searchInput = driver.find_element(By.ID, "qt")
-
-        time.sleep(0.1)
-        searchInput.send_keys(f"Caucasian teenage boy doing American Sign Language on one hand showing the symbol for {letter}")
-
-        time.sleep(0.1)
-        searchInput.send_keys(Keys.ENTER)
-
+       
         time.sleep(0.5)
 
         try:
-            data = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[5]/div/div[3]/div[1]/div/div/div[1]/div/img").get_attribute("src")
+            data = driver.find_elements(By.TAG_NAME, "img")[1].get_attribute("src")
         except Exception as e:
             print(f'Hata: {e}')
             error = True
@@ -402,17 +355,9 @@ def dataCollector8():
 def dataCollector9():
     alphabet = "bcdefghijklmnopqrstuvwxyz"
     driver = webdriver.Chrome()
-    url = "https://www.alamy.com/"
+    url = "https://www.alamy.com/stock-photo/Hand-showing-letter-a-on-color-background.-Sign-language-alphabet.html?sortBy=relevant"
     driver.get(url)
-    time.sleep(0.1)
-    searchInput = driver.find_element(By.ID, "qt")
-
-    time.sleep(0.1)
-    searchInput.send_keys(f"Hand showing letter a on color background. Sign language alphabet")
-
-    time.sleep(0.1)
-    searchInput.send_keys(Keys.ENTER)
-
+   
     time.sleep(1)
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -439,17 +384,9 @@ def dataCollector9():
     for letter in alphabet:
         driver = webdriver.Chrome()
         error = False
-        url = "https://www.alamy.com/"
+        url = f"https://www.alamy.com/stock-photo/Hand-showing-letter-{letter}-on-color-background.-Sign-language-alphabet.html?sortBy=relevant"
         driver.get(url)
-        time.sleep(0.1)
-        searchInput = driver.find_element(By.ID, "qt")
-
-        time.sleep(0.1)
-        searchInput.send_keys(f"Hand showing letter {letter} on color background. Sign language alphabet")
-
-        time.sleep(0.1)
-        searchInput.send_keys(Keys.ENTER)
-
+       
         time.sleep(0.5)
 
         try:
@@ -669,6 +606,7 @@ def dataCollector14():
         video_response = requests.get(video_data, headers=headers)
         if video_response.status_code == 200:
             video_filename = generate_unique_filename("mp4")
+            create_directory_if_not_exists(f"Data\\{alphabet[i]}\\")
             video_path = os.path.join("Data", alphabet[i], video_filename)
 
             with open(video_path, "wb") as video_file:
@@ -721,7 +659,9 @@ def dataCollector15():
         video_response = requests.get(video_data, headers=headers)
         if video_response.status_code == 200:
             video_filename = generate_unique_filename("mp4")
+            create_directory_if_not_exists(f"Data\\{alphabet[i]}\\")
             video_path = os.path.join("Data", f"{alphabet[i]}", video_filename)
+            
 
             with open(video_path, "wb") as video_file:
                 video_file.write(video_response.content)
@@ -756,4 +696,3 @@ def dataCollector15():
 
 
 
-dataCollector15()
