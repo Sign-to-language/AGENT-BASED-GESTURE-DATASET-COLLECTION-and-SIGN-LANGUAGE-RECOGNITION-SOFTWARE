@@ -406,6 +406,61 @@ button.place(relx=0.85, rely=0.06, anchor=tkinter.CENTER)
 frame = customtkinter.CTkFrame(master=app6,width=1580,height=700,corner_radius=100, fg_color="#88AB8E")
 frame.place(relx=0.55, rely=0.6, anchor=tkinter.CENTER)
 
+# Seventh Window
+app7 = tkinter.Toplevel()
+width= app7.winfo_screenwidth() 
+height= app7.winfo_screenheight()
+app7.geometry("%d400x%d240" % (width, height))
+app7.title("Search")
+app7.configure(bg="#EEF0E5")
+app7.withdraw() 
+
+label = customtkinter.CTkLabel(master=app7,text="Sign to Language", width=210, height=150, text_color="#163020" , font=("Castellar", 35))
+label.place(relx=0.14,rely=0.06, anchor=tkinter.CENTER)
+
+
+button = customtkinter.CTkButton(master=app7,text="Home",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
+                hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25), command=lambda: switch_window(app7, app1))
+button.place(relx=0.45, rely=0.06, anchor=tkinter.CENTER)
+
+button = customtkinter.CTkButton(master=app7,text="Search",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
+                hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25), command=lambda: switch_window(app7, app2))
+button.place(relx=0.55, rely=0.06, anchor=tkinter.CENTER)
+
+button = customtkinter.CTkButton(master=app7,text="Sign Up",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
+                hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25), command=lambda: switch_window(app7, app3))
+button.place(relx=0.65, rely=0.06, anchor=tkinter.CENTER)
+
+button = customtkinter.CTkButton(master=app7,text="Log In",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
+                hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25), command=lambda: switch_window(app7, app4))
+button.place(relx=0.75, rely=0.06, anchor=tkinter.CENTER)
+
+button = customtkinter.CTkButton(master=app7,text="Admin",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#EEF0E5", 
+                hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25))
+button.place(relx=0.85, rely=0.06, anchor=tkinter.CENTER)
+
+frame = customtkinter.CTkFrame(master=app7,width=1580,height=700,corner_radius=100, fg_color="#88AB8E")
+frame.place(relx=0.55, rely=0.6, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=app7,text=" ADMIN LOG IN ", width=210, height=150, text_color="#EEF0E5" , font=("Poor Richard", 35), bg_color="#88AB8E")
+label.place(relx=0.50,rely=0.3, anchor=tkinter.CENTER)
+
+label = customtkinter.CTkLabel(master=app7,text=" Admin E-mail ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.44,rely=0.35, anchor=tkinter.CENTER)
+
+entry = customtkinter.CTkEntry(master=app7,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your e-mail address..." ,text_color="black")
+entry.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
+
+text = entry.get()
+
+label = customtkinter.CTkLabel(master=app7,text=" Admin Password ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
+label.place(relx=0.44,rely=0.45, anchor=tkinter.CENTER)
+
+entry1 = customtkinter.CTkEntry(master=app7,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your password..." ,text_color="black" , show="*")
+entry1.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+
+button = customtkinter.CTkButton(master=app7,text="LOG IN" ,width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5", hover_color="#88AB8E", text_color="black", font=("Castellar", 15) , command=lambda: switch_window(app7, app6))
+button.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
 
 # Run the main loop
 app1.mainloop()
