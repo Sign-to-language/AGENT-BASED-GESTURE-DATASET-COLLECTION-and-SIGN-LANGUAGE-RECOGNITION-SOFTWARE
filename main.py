@@ -7,6 +7,7 @@ import os
 import ASLdataagent as data
 import shutil
 
+
 def switch_window(window_to_hide, window_to_show):
     window_to_hide.withdraw()
     window_to_show.deiconify()
@@ -210,7 +211,7 @@ app3 = tkinter.Toplevel()
 width= app3.winfo_screenwidth() 
 height= app3.winfo_screenheight()
 app3.geometry("%d400x%d240" % (width, height))
-app3.title("Search")
+app3.title("Sign Up")
 app3.configure(bg="#EEF0E5")
 app3.withdraw()  
 
@@ -246,32 +247,34 @@ label.place(relx=0.50,rely=0.3, anchor=tkinter.CENTER)
 label = customtkinter.CTkLabel(master=app3,text="Name ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
 label.place(relx=0.44,rely=0.35, anchor=tkinter.CENTER)
 
-entry = customtkinter.CTkEntry(master=app3,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your name..." ,text_color="black")
-entry.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
+entry3 = customtkinter.CTkEntry(master=app3,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your name..." ,text_color="black")
+entry3.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
 
-text = entry.get()
+input3 = entry3.get()
 
 label = customtkinter.CTkLabel(master=app3,text="Surname ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
 label.place(relx=0.44,rely=0.45, anchor=tkinter.CENTER)
 
-entry = customtkinter.CTkEntry(master=app3,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your surname...",text_color="black" )
-entry.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+entry4 = customtkinter.CTkEntry(master=app3,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your surname...",text_color="black" )
+entry4.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-text = entry.get()
+input4 = entry4.get()
 
 label = customtkinter.CTkLabel(master=app3,text="E-mail ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
 label.place(relx=0.44,rely=0.55, anchor=tkinter.CENTER)
 
-entry = customtkinter.CTkEntry(master=app3,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your e-mail address..." ,text_color="black")
-entry.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
+entry5 = customtkinter.CTkEntry(master=app3,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your e-mail address..." ,text_color="black")
+entry5.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
 
-text = entry.get()
+input5 = entry5.get()
 
 label = customtkinter.CTkLabel(master=app3,text="Password ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
 label.place(relx=0.45,rely=0.65, anchor=tkinter.CENTER)
 
-entry1 = customtkinter.CTkEntry(master=app3,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your password..." ,text_color="black", show="*")
-entry1.place(relx=0.5, rely=0.7, anchor=tkinter.CENTER)
+entry6 = customtkinter.CTkEntry(master=app3,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your password..." ,text_color="black", show="*")
+entry6.place(relx=0.5, rely=0.7, anchor=tkinter.CENTER)
+
+input6 = entry6.get()
 
 button = customtkinter.CTkButton(master=app3,text="SIGN UP",width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5",
                 hover_color="#88AB8E", text_color="black", font=("Castellar", 15)) 
@@ -282,7 +285,7 @@ app4 = tkinter.Toplevel()
 width= app4.winfo_screenwidth() 
 height= app4.winfo_screenheight()
 app4.geometry("%d400x%d240" % (width, height))
-app4.title("Search")
+app4.title("Log In")
 app4.configure(bg="#EEF0E5")
 app4.withdraw()  
 
@@ -318,16 +321,18 @@ label.place(relx=0.50,rely=0.3, anchor=tkinter.CENTER)
 label = customtkinter.CTkLabel(master=app4,text="E-mail ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
 label.place(relx=0.44,rely=0.35, anchor=tkinter.CENTER)
 
-entry = customtkinter.CTkEntry(master=app4,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your e-mail address..." ,text_color="black")
-entry.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
+entry7 = customtkinter.CTkEntry(master=app4,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your e-mail address..." ,text_color="black")
+entry7.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
 
-text = entry.get()
+input7 = entry7.get()
 
 label = customtkinter.CTkLabel(master=app4,text="Password ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
 label.place(relx=0.44,rely=0.45, anchor=tkinter.CENTER)
 
-entry1 = customtkinter.CTkEntry(master=app4,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your password..." ,text_color="black" , show="*")
-entry1.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+entry8 = customtkinter.CTkEntry(master=app4,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your password..." ,text_color="black" , show="*")
+entry8.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+
+input8 = entry8.get()
 
 button = customtkinter.CTkButton(master=app4,text="LOG IN",width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5",
                 hover_color="#88AB8E", text_color="black", font=("Castellar", 15))
@@ -338,7 +343,7 @@ app5 = tkinter.Toplevel()
 width= app5.winfo_screenwidth() 
 height= app5.winfo_screenheight()
 app5.geometry("%d400x%d240" % (width, height))
-app5.title("Search")
+app5.title("Previously Learned")
 app5.configure(bg="#EEF0E5")
 app5.withdraw() 
 
@@ -377,7 +382,7 @@ app6 = tkinter.Toplevel()
 width= app6.winfo_screenwidth() 
 height= app6.winfo_screenheight()
 app6.geometry("%d400x%d240" % (width, height))
-app6.title("Search")
+app6.title("Admin Panel")
 app6.configure(bg="#EEF0E5")
 app6.withdraw() 
 
@@ -560,7 +565,7 @@ app7 = tkinter.Toplevel()
 width= app7.winfo_screenwidth() 
 height= app7.winfo_screenheight()
 app7.geometry("%d400x%d240" % (width, height))
-app7.title("Search")
+app7.title("Admin")
 app7.configure(bg="#EEF0E5")
 app7.withdraw() 
 
@@ -597,22 +602,24 @@ label.place(relx=0.50,rely=0.3, anchor=tkinter.CENTER)
 label = customtkinter.CTkLabel(master=app7,text=" Admin E-mail ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
 label.place(relx=0.44,rely=0.35, anchor=tkinter.CENTER)
 
-entry = customtkinter.CTkEntry(master=app7,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your e-mail address..." ,text_color="black")
-entry.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
+entry9 = customtkinter.CTkEntry(master=app7,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your e-mail address..." ,text_color="black")
+entry9.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
 
-
+input9 = entry9.get()
 
 label = customtkinter.CTkLabel(master=app7,text=" Admin Password ", width=10, height=10, text_color="black" , font=("Book Antiqua", 13), bg_color="#88AB8E")
 label.place(relx=0.44,rely=0.45, anchor=tkinter.CENTER)
 
-entry1 = customtkinter.CTkEntry(master=app7,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your password..." ,text_color="black" , show="*")
-entry1.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+entry10 = customtkinter.CTkEntry(master=app7,width=240,height=50,corner_radius=10, bg_color="#88AB8E", fg_color="#EEF0E5", placeholder_text="Enter your password..." ,text_color="black" , show="*")
+entry10.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+
+input10 = entry10.get()
 
 
 
 def adminCheck():
-    text = entry.get()
-    text1 = entry1.get()
+    text = entry9.get()
+    text1 = entry10.get()
     print(text, text1)
     if text == "admin" and text1 == "admin":
         switch_window(app7, app6)
