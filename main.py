@@ -386,9 +386,48 @@ entry8.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
 input8 = entry8.get()
 
+def logIn():
+    global isLogged
+    global useremail
+    global letters
+    email = entry7.get()
+    password = entry8.get()
+    # JSON dosyasının adı
+    dosya_adi = "veri.json"
+
+    try:
+        # Mevcut dosyayı oku
+        with open(dosya_adi, 'r') as dosya:
+            mevcut_veri = json.load(dosya)
+    except FileNotFoundError:
+        messagebox.showerror(title="Error" , message="The user is not found! Please sign up")
+        return
+    
+    # E-posta ve şifre kontrolü
+    for kayit in mevcut_veri:
+        if kayit["email"] == email and kayit["password"] == password:
+            messagebox.showinfo(title="Login" , message="Login successful!")
+            isLogged = True
+            useremail = kayit["email"]
+            letters = []
+            letters = kayit["letters"]
+            switch_window(app4, app1)
+            return
+        
+        entry7.delete(0, tkinter.END)
+        entry8.delete(0, tkinter.END)
+    
+
+    messagebox.showerror(title="Error" , message="Wrong password or email")
+    
+
+
+
 button = customtkinter.CTkButton(master=app4,text="LOG IN",width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5",
-                hover_color="#88AB8E", text_color="black", font=("Castellar", 15))
+                hover_color="#88AB8E", text_color="black", font=("Castellar", 15), command = logIn)
 button.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
+
+
 
 # Fifth Window
 app5 = tkinter.Toplevel()
