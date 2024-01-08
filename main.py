@@ -6,7 +6,10 @@ import random
 import os
 import ASLdataagent as data
 import shutil
+import json
 
+useremail = ""  
+isLogged = False
 
 def switch_window(window_to_hide, window_to_show):
     window_to_hide.withdraw()
@@ -276,9 +279,58 @@ entry6.place(relx=0.5, rely=0.7, anchor=tkinter.CENTER)
 
 input6 = entry6.get()
 
+def signUp():
+    # JSON dosyasının adı
+    dosya_adi = "veri.json"
+
+    try:
+        # Mevcut dosyayı oku
+        with open(dosya_adi, 'r') as dosya:
+            mevcut_veri = json.load(dosya)
+    except FileNotFoundError:
+        # Dosya bulunamazsa boş bir dizi oluştur
+        mevcut_veri = []
+
+    # Yeni veriyi al
+    name = entry3.get()
+    surname = entry4.get()
+    email = entry5.get()
+    password = entry6.get()
+
+    # E-posta kontrolü
+    for kayit in mevcut_veri:
+        if kayit["email"] == email:
+            messagebox.showinfo(title="Sign Up" , message="This email is already registered!")
+            return  # E-posta zaten kayıtlıysa işlemi sonlandır
+        
+    switch_window(app3, app4)
+    # Yeni veriyi bir sözlük olarak oluştur
+    yeni_veri = {
+        "email": email,
+        "password": password,
+        "name": name,
+        "surname": surname,
+        "letters" : []
+    }
+
+    # Yeni veriyi diziye ekle
+    mevcut_veri.append(yeni_veri)
+
+    # JSON dosyasına yazma işlemi
+    with open(dosya_adi, 'w') as dosya:
+        json.dump(mevcut_veri, dosya)
+        messagebox.showinfo(title="Sign Up" , message="Registration successful!")
+
+    entry3.delete(0, tkinter.END)
+    entry4.delete(0, tkinter.END)
+    entry5.delete(0, tkinter.END)
+    entry6.delete(0, tkinter.END)
+    
+    
 button = customtkinter.CTkButton(master=app3,text="SIGN UP",width=75,height=25,border_width=0,corner_radius=8 , bg_color="#88AB8E", fg_color="#EEF0E5",
-                hover_color="#88AB8E", text_color="black", font=("Castellar", 15)) 
+                hover_color="#88AB8E", text_color="black", font=("Castellar", 15), command = signUp) 
 button.place(relx=0.5, rely=0.8, anchor=tkinter.CENTER)
+
 
 # Fourth Window
 app4 = tkinter.Toplevel()
