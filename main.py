@@ -7,9 +7,11 @@ import os
 import ASLdataagent as data
 import shutil
 import json
+from tkinter import messagebox
 
 useremail = ""  
 isLogged = False
+letters = []
 
 def switch_window(window_to_hide, window_to_show):
     window_to_hide.withdraw()
@@ -77,6 +79,26 @@ my_label.place(relx=0.75, rely=0.6, anchor=tkinter.CENTER)
 # Second Window
 def clickSearch():
     text = entry2.get()
+
+    if isLogged:
+        global useremail
+        if text not in letters:
+            letters.append(text)
+        try:
+            with open("veri.json", 'r') as dosya:
+                mevcut_veri = json.load(dosya)
+        except FileNotFoundError:
+            messagebox.showerror(title="Error", message="The user is not found! Please sign up")
+            return
+        
+        for kayit in mevcut_veri:
+            if kayit["email"] == useremail:
+                kayit["letters"] = letters
+                
+        # JSON dosyasını tekrar yaz
+        with open("veri.json", 'w') as dosya:
+            json.dump(mevcut_veri, dosya, indent=2)
+        
     for widget in content_frame.winfo_children():
         if isinstance(widget, customtkinter.CTkLabel) and widget != content_frame.winfo_children()[0]:
             widget.destroy()
@@ -462,11 +484,71 @@ button = customtkinter.CTkButton(master=app5,text="Admin",width=120,height=32,bo
                 hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25) , command=lambda: switch_window(app5, app7))
 button.place(relx=0.85, rely=0.06, anchor=tkinter.CENTER)
 
-frame = customtkinter.CTkFrame(master=app5,width=1580,height=700,corner_radius=100, fg_color="#88AB8E")
-frame.place(relx=0.55, rely=0.6, anchor=tkinter.CENTER)
+canvas2 = tkinter.Canvas(app5)
+canvas2.place(relx=0.55, rely=0.6, anchor=tkinter.CENTER, width=1580, height=700)
 
-label = customtkinter.CTkLabel(master=app5,text="PREVIOUSLY LEARNED LETTERS ", width=210, height=150, text_color="#EEF0E5" , font=("Poor Richard", 35), bg_color="#88AB8E")
-label.place(relx=0.52,rely=0.3, anchor=tkinter.CENTER)
+scrollbar2 = ttk.Scrollbar(app5, orient="vertical", command=canvas2.yview)
+scrollbar2.place(relx=0.98, rely=0.6, anchor=tkinter.CENTER, relheight=0.6)
+
+canvas2.configure(yscrollcommand=scrollbar2.set)
+
+
+content_frame2 = customtkinter.CTkFrame(canvas2, width=1580, height=1000, corner_radius=100, fg_color="#88AB8E")
+canvas2.create_window((0, 0), window=content_frame2, anchor="nw")
+
+label = customtkinter.CTkLabel(master=content_frame2,text="PREVIOUSLY LEARNED LETTERS ", width=210, height=150, text_color="#EEF0E5" , font=("Poor Richard", 35), bg_color="#88AB8E")
+label.place(relx=0.5,rely=0.1, anchor=tkinter.CENTER)
+
+content_frame2.update_idletasks()
+canvas2.configure(scrollregion=canvas2.bbox("all"))
+
+def toSearch(letter):
+    switch_window(app5, app2)
+    entry2.delete(0, tkinter.END)  # Entry içindeki mevcut değeri siler
+    entry2.insert(0, letter)  # Yeni değeri ekler
+    btn.invoke()
+
+
+def previouslyLetters():
+    for widget in content_frame2.winfo_children():
+        if isinstance(widget, customtkinter.CTkButton) and widget._fg_color == "#EEF0E5":
+            widget.destroy()
+
+    if isLogged:
+        y = 0.2
+        x = 0.1
+        counter = 0
+        print(letters)
+        for letter in letters:
+            # Lambda ifadesinde geçici bir değişken kullanarak sorunu çöz
+            button = customtkinter.CTkButton(
+                master=content_frame2,
+                text=f"{letter}",
+                width=120,
+                height=32,
+                border_width=0,
+                corner_radius=8,
+                fg_color="#EEF0E5",
+                hover_color="#163020",
+                text_color="#AFC8AD",
+                font=("Castellar", 25),
+                command=lambda temp_letter=letter: toSearch(temp_letter)
+            )
+            button.place(relx=x, rely=y, anchor=tkinter.CENTER)
+
+            counter += 1
+
+            if counter == 5:
+                y += 0.1
+                x = 0.1
+                counter = 0
+            else:
+                x += 0.2
+
+
+button = customtkinter.CTkButton(master=content_frame2,text="refresh",width=120,height=32,border_width=0,corner_radius=8 , fg_color="#FFFFFF", 
+                    hover_color="#163020", text_color="#AFC8AD", font=("Castellar", 25), command = previouslyLetters)
+button.place(relx=0.8, rely=0.1, anchor=tkinter.CENTER)
 
 # Sixth Window
 app6 = tkinter.Toplevel()
